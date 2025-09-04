@@ -1,0 +1,7 @@
+[
+  {"id":1,"name":"Aarav Sharma","email":"aarav@example.com","college":"IIT Delhi","degree":"B.Tech CSE","year":3,"skills":["Python","Machine Learning","Data Analysis"],"location_pref":"Delhi","sector_interests":["AI/ML","Data Science"],"category":"General","aspirational_district":false,"past_internships":0},
+  {"id":2,"name":"Priya Verma","email":"priya@example.com","college":"NIT Trichy","degree":"B.Tech ECE","year":2,"skills":["C++","Embedded Systems","VLSI"],"location_pref":"Chennai","sector_interests":["Electronics","Hardware"],"category":"OBC","aspirational_district":false,"past_internships":0},
+  {"id":3,"name":"Rahul Yadav","email":"rahul@example.com","college":"Delhi University","degree":"B.Sc IT","year":3,"skills":["JavaScript","React","Node.js"],"location_pref":"Remote","sector_interests":["Web Development","Frontend"],"category":"SC","aspirational_district":true,"past_internships":1},
+  {"id":4,"name":"Meena Kumari","email":"meena@example.com","college":"IIT Bombay","degree":"B.Tech Mechanical","year":4,"skills":["CAD","Matlab","Robotics"],"location_pref":"Mumbai","sector_interests":["Automobile","Robotics"],"category":"ST","aspirational_district":false,"past_internships":0},
+  {"id":5,"name":"Aditya Gupta","email":"aditya@example.com","college":"IIIT Hyderabad","degree":"B.Tech IT","year":2,"skills":["Python","Django","SQL"],"location_pref":"Hyderabad","sector_interests":["Backend Development","Databases"],"category":"General","aspirational_district":false,"past_internships":0}
+]

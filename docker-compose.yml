@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: pm-internship-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - DATABASE_URL=sqlite:///app.db
+      - ADMIN_API_KEY=admin123
+      - SECRET_KEY=your-secret-key-change-in-production
+      - MODEL_DIR=models_artifacts
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./backend/models_artifacts:/app/models_artifacts
+      - ./backend/logs:/app/logs
+      - ./backend/data:/app/data
+      - backend_db:/app
+    networks:
+      - pm-internship-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  frontend:
+    build: ./frontend
+    container_name: pm-internship-frontend
+    ports:
+      - "3000:80"
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000
+      - REACT_APP_ADMIN_API_KEY=admin123
+    depends_on:
+      - backend
+    networks:
+      - pm-internship-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+  # Optional PostgreSQL database (uncomment to use instead of SQLite)
+  # postgres:
+  #   image: postgres:15-alpine
+  #   container_name: pm-internship-db
+  #   environment:
+  #     POSTGRES_DB: pm_internship
+  #     POSTGRES_USER: pm_user
+  #     POSTGRES_PASSWORD: pm_password
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - pm-internship-network
+  #   restart: unless-stopped
+  #   ports:
+  #     - "5432:5432"
+
+volumes:
+  backend_db:
+    driver: local
+  # postgres_data:  # Uncomment if using PostgreSQL
+  #   driver: local
+
+networks:
+  pm-internship-network:
+    driver: bridge

@@ -1,0 +1,7 @@
+[
+  {"id":101,"company_name":"Tata Consultancy Services","email":"hr@tcs.com","sector":"IT Services","title":"AI Intern","description":"Work on machine learning pipelines and AI solutions.","required_skills":["Python","Machine Learning","Data Science"],"location":"Delhi","capacity":5,"reservation_quota":{"SC":0,"ST":0,"OBC":0,"PwD":0}},
+  {"id":102,"company_name":"Qualcomm India","email":"hr@qualcomm.com","sector":"Electronics","title":"VLSI Design Intern","description":"Chip design and embedded systems.","required_skills":["C++","VLSI","Embedded Systems"],"location":"Chennai","capacity":3,"reservation_quota":{"SC":0,"ST":0,"OBC":0,"PwD":0}},
+  {"id":103,"company_name":"Infosys","email":"hr@infosys.com","sector":"Software","title":"Web Dev Intern","description":"Frontend and backend development.","required_skills":["JavaScript","React","Node.js"],"location":"Remote","capacity":4,"reservation_quota":{"SC":0,"ST":0,"OBC":0,"PwD":0}},
+  {"id":104,"company_name":"Mahindra & Mahindra","email":"hr@mahindra.com","sector":"Automobile","title":"Robotics Intern","description":"Automobile robotics and CAD designs.","required_skills":["CAD","Robotics","Matlab"],"location":"Mumbai","capacity":2,"reservation_quota":{"SC":0,"ST":0,"OBC":0,"PwD":0}},
+  {"id":105,"company_name":"Microsoft India","email":"hr@microsoft.com","sector":"Software","title":"Backend Developer Intern","description":"Backend systems and DB management.","required_skills":["Python","Django","SQL"],"location":"Hyderabad","capacity":3,"reservation_quota":{"SC":0,"ST":0,"OBC":0,"PwD":0}}
+]
