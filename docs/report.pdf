@@ -1,0 +1,137 @@
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Contents 4 0 R
+/Resources <<
+/Font <<
+/F1 5 0 R
+>>
+>>
+>>
+endobj
+
+4 0 obj
+<<
+/Length 2000
+>>
+stream
+BT
+/F1 24 Tf
+50 750 Td
+(AI-Based Smart Allocation Engine) Tj
+0 -30 Td
+(for PM Internship Scheme) Tj
+
+/F1 16 Tf
+0 -50 Td
+(Technical Report Template) Tj
+
+/F1 12 Tf
+0 -40 Td
+(This is a placeholder PDF report. In a complete implementation,) Tj
+0 -20 Td
+(this would contain:) Tj
+
+0 -30 Td
+(1. System Architecture Diagram) Tj
+0 -20 Td
+(   - Frontend, Backend, ML Engine, Database components) Tj
+0 -20 Td
+(   - Data flow and API interactions) Tj
+
+0 -30 Td
+(2. Machine Learning Methodology) Tj
+0 -20 Td
+(   - Feature engineering approach) Tj
+0 -20 Td
+(   - Similarity-based vs supervised learning models) Tj
+0 -20 Td
+(   - Fairness algorithm implementation) Tj
+
+0 -30 Td
+(3. Fairness and Bias Mitigation) Tj
+0 -20 Td
+(   - Reservation quota enforcement) Tj
+0 -20 Td
+(   - Score boosting for underrepresented groups) Tj
+0 -20 Td
+(   - Evaluation of fairness metrics) Tj
+
+0 -30 Td
+(4. Performance Evaluation) Tj
+0 -20 Td
+(   - Precision@K, Recall@K, MAP metrics) Tj
+0 -20 Td
+(   - Response time and scalability analysis) Tj
+0 -20 Td
+(   - Quota fulfillment rates) Tj
+
+0 -30 Td
+(5. Implementation Details) Tj
+0 -20 Td
+(   - Technology stack and deployment) Tj
+0 -20 Td
+(   - Security and privacy measures) Tj
+0 -20 Td
+(   - Testing and quality assurance) Tj
+
+0 -30 Td
+(6. Screenshots and Demo Results) Tj
+0 -20 Td
+(   - User interface screenshots) Tj
+0 -20 Td
+(   - Sample matching results) Tj
+0 -20 Td
+(   - Admin panel views) Tj
+
+0 -40 Td
+(To generate the complete report with actual screenshots) Tj
+0 -20 Td
+(and results, run the system and capture the outputs.) Tj
+
+ET
+endstream
+endobj
+
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+
+xref
+0 6
+0000000000 65535 f 
+0000000010 00000 n 
+0000000053 00000 n 
+0000000109 00000 n 
+0000000252 00000 n 
+0000002305 00000 n 
+trailer
+<<
+/Size 6
+/Root 1 0 R
+>>
+startxref
+2372
+%%EOF
