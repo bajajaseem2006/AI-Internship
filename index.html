@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Authenticity Validator - SIH 2025</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <div class="logo-icon">🛡️</div>
+                        <div class="logo-text">
+                            <h1>CertValidator Pro</h1>
+                            <span>SIH 2025 - Smart Certificate Authentication System</span>
+                        </div>
+                    </div>
+                    <nav class="nav">
+                        <button class="nav-btn active" data-tab="dashboard">Dashboard</button>
+                        <button class="nav-btn" data-tab="verify">Verify Certificate</button>
+                        <button class="nav-btn" data-tab="institution">Institution Portal</button>
+                        <button class="nav-btn" data-tab="student">Student Portal</button>
+                        <button class="nav-btn" data-tab="admin">Admin Panel</button>
+                        <button class="nav-btn" data-tab="blockchain">Blockchain</button>
+                    </nav>
+                    <div class="user-info" id="userInfo" style="display: none;">
+                        <span id="currentUser">Not logged in</span>
+                        <button class="btn btn--sm btn--secondary" id="logoutBtn">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Tab -->
+            <section class="tab-content active" id="dashboard">
+                <div class="container">
+                    <div class="dashboard-grid">
+                        <!-- Stats Cards -->
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon">✅</div>
+                                <div class="stat-content">
+                                    <h3 id="total-verifications">2,847</h3>
+                                    <p>Total Verifications</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">🎯</div>
+                                <div class="stat-content">
+                                    <h3 id="success-rate">94%</h3>
+                                    <p>Success Rate</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">🚨</div>
+                                <div class="stat-content">
+                                    <h3 id="fraud-detected">24</h3>
+                                    <p>Fraud Detected</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">📊</div>
+                                <div class="stat-content">
+                                    <h3 id="fraud-rate">0.8%</h3>
+                                    <p>Fraud Rate</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Charts -->
+                        <div class="chart-container" style="position: relative; height: 300px;">
+                            <h3>Verification Trends</h3>
+                            <canvas id="verificationChart"></canvas>
+                        </div>
+
+                        <!-- Recent Verifications -->
+                        <div class="recent-verifications">
+                            <h3>Recent Verifications</h3>
+                            <div class="verification-list" id="recentVerifications">
+                                <!-- Dynamic content -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Verify Certificate Tab -->
+            <section class="tab-content" id="verify">
+                <div class="container">
+                    <div class="verify-container">
+                        <!-- Upload Section -->
+                        <div class="upload-section">
+                            <h2>🔍 Upload Certificate for Verification</h2>
+                            <div class="upload-area" id="uploadArea">
+                                <div class="upload-content">
+                                    <div class="upload-icon">📄</div>
+                                    <h3>Drag & Drop Certificate</h3>
+                                    <p>Support for PDF, JPG, PNG formats (Max 10MB)</p>
+                                    <button class="btn btn--primary" id="selectFileBtn">Select File</button>
+                                    <input type="file" id="fileInput" accept=".pdf,.jpg,.jpeg,.png" hidden>
+                                </div>
+                            </div>
+                            <div class="upload-progress" id="uploadProgress" style="display: none;">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progressFill"></div>
+                                </div>
+                                <p id="progressText">Processing certificate...</p>
+                            </div>
+                        </div>
+
+                        <!-- Results Section -->
+                        <div class="results-section" id="resultsSection" style="display: none;">
+                            <h3>📋 Verification Results</h3>
+                            <div class="result-card" id="resultCard">
+                                <!-- Dynamic content -->
+                            </div>
+                            <div class="extracted-data" id="extractedData">
+                                <!-- Dynamic content -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Institution Portal Tab -->
+            <section class="tab-content" id="institution">
+                <div class="container">
+                    <div class="portal-container">
+                        <div class="login-section" id="institutionLogin">
+                            <div class="login-card">
+                                <h2>🏛️ Institution Portal Login</h2>
+                                <form id="institutionLoginForm">
+                                    <div class="form-group">
+                                        <label class="form-label">Username:</label>
+                                        <input type="text" class="form-control" id="instUsername" placeholder="Enter username">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Password:</label>
+                                        <input type="password" class="form-control" id="instPassword" placeholder="Enter password">
+                                    </div>
+                                    <button type="submit" class="btn btn--primary btn--full-width">Login</button>
+                                </form>
+                                <div class="demo-credentials">
+                                    <h4>Demo Credentials:</h4>
+                                    <p><strong>Username:</strong> admin_institution</p>
+                                    <p><strong>Password:</strong> sih2025_inst</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="portal-dashboard hidden" id="institutionDashboard">
+                            <h2>🏛️ Institution Dashboard</h2>
+                            <div class="portal-stats">
+                                <div class="stat-card">
+                                    <h3>156</h3>
+                                    <p>Certificates Added</p>
+                                </div>
+                                <div class="stat-card">
+                                    <h3>1,234</h3>
+                                    <p>Verifications</p>
+                                </div>
+                                <div class="stat-card">
+                                    <h3>98%</h3>
+                                    <p>Success Rate</p>
+                                </div>
+                            </div>
+                            <div class="portal-actions">
+                                <button class="btn btn--primary" id="addNewCert">➕ Add New Certificate</button>
+                                <button class="btn btn--secondary" id="viewCertHistory">📋 View History</button>
+                                <button class="btn btn--secondary" id="downloadReports">📊 Download Reports</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Student Portal Tab -->
+            <section class="tab-content" id="student">
+                <div class="container">
+                    <div class="portal-container">
+                        <div class="login-section" id="studentLogin">
+                            <div class="login-card">
+                                <h2>🎓 Student Portal Login</h2>
+                                <form id="studentLoginForm">
+                                    <div class="form-group">
+                                        <label class="form-label">Username:</label>
+                                        <input type="text" class="form-control" id="stuUsername" placeholder="Enter username">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Password:</label>
+                                        <input type="password" class="form-control" id="stuPassword" placeholder="Enter password">
+                                    </div>
+                                    <button type="submit" class="btn btn--primary btn--full-width">Login</button>
+                                </form>
+                                <div class="demo-credentials">
+                                    <h4>Demo Credentials:</h4>
+                                    <p><strong>Username:</strong> admin_student</p>
+                                    <p><strong>Password:</strong> sih2025_student</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="portal-dashboard hidden" id="studentDashboard">
+                            <h2>🎓 Student Dashboard</h2>
+                            <div class="portal-stats">
+                                <div class="stat-card">
+                                    <h3>8</h3>
+                                    <p>My Certificates</p>
+                                </div>
+                                <div class="stat-card">
+                                    <h3>23</h3>
+                                    <p>Verifications</p>
+                                </div>
+                                <div class="stat-card">
+                                    <h3>100%</h3>
+                                    <p>Authentic Rate</p>
+                                </div>
+                            </div>
+                            <div class="portal-actions">
+                                <button class="btn btn--primary" id="verifyCert">🔍 Verify Certificate</button>
+                                <button class="btn btn--secondary" id="viewMyHistory">📋 View My History</button>
+                                <button class="btn btn--secondary" id="downloadCertReport">📄 Download Report</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admin Panel Tab -->
+            <section class="tab-content" id="admin">
+                <div class="container">
+                    <div class="admin-panel">
+                        <div class="admin-header">
+                            <h2>🔧 Certificate Database Management</h2>
+                            <div class="admin-controls">
+                                <input type="text" class="form-control" id="searchInput" placeholder="Search certificates...">
+                                <button class="btn btn--secondary" id="exportBtn">📊 Export Data</button>
+                                <button class="btn btn--primary" id="addCertBtn">➕ Add Certificate</button>
+                            </div>
+                        </div>
+                        <div class="certificates-table">
+                            <table id="certificatesTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Student Name</th>
+                                        <th>Certificate ID</th>
+                                        <th>Institution</th>
+                                        <th>Course</th>
+                                        <th>Year</th>
+                                        <th>Grade</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="certificatesTableBody">
+                                    <!-- Dynamic content -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blockchain Tab -->
+            <section class="tab-content" id="blockchain">
+                <div class="container">
+                    <div class="blockchain-section">
+                        <h2>⛓️ Blockchain Verification System</h2>
+                        <div class="blockchain-grid">
+                            <div class="blockchain-card">
+                                <h3>📦 Certificate Hash Registry</h3>
+                                <div class="hash-display">
+                                    <p>Latest Block Hash:</p>
+                                    <code id="latestHash">0x7a8f9e2d1c4b6a9e8f7d2c1b9a8e7f6d4c2b1a9e8f7d6c5b4a3e2d1c9b8a7f6e5</code>
+                                </div>
+                                <div class="blockchain-stats">
+                                    <div class="stat">
+                                        <span>Total Blocks:</span>
+                                        <span>2,847</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span>Gas Used:</span>
+                                        <span>0.0045 ETH</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="blockchain-card">
+                                <h3>📜 Smart Contract Status</h3>
+                                <div class="contract-status">
+                                    <div class="status-indicator active">
+                                        <span class="status-dot"></span>
+                                        <span>Contract Active & Verified</span>
+                                    </div>
+                                    <div class="contract-address">
+                                        <p>Contract Address:</p>
+                                        <code>0x742d35Cc6634C0532925a3b8D598C8b8b4b9a8f7</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blockchain-info">
+                            <h4>🔐 Blockchain Features</h4>
+                            <ul>
+                                <li>✅ Immutable certificate records</li>
+                                <li>✅ Decentralized verification network</li>
+                                <li>✅ Real-time fraud detection</li>
+                                <li>✅ Smart contract automation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Toast Notifications -->
+        <div class="toast-container" id="toastContainer"></div>
+
+        <!-- Certificate Detail Modal -->
+        <div class="modal hidden" id="certModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>📋 Certificate Details</h3>
+                    <button class="close-btn" id="closeModal">&times;</button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Dynamic content -->
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn--secondary" id="downloadQR">📱 Download QR</button>
+                    <button class="btn btn--primary" id="generateReport">📄 Generate Report</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay hidden" id="loadingOverlay">
+            <div class="loading-content">
+                <div class="loader"></div>
+                <p>Processing certificate...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
